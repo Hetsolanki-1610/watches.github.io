@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>3D Circular Camera Roll</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+body {
+  perspective: 1000px; /* 3D effect */
+  background: #f4c6dc;
+}
+
+h1{
+  text-align:center;
+  font-size:2rem;
+  margin:30px 0;
+  font-weight:bold;
+}
+
+.carousel {
+  width: 360px;
+  height: 360px;
+  margin: 0 auto;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: spin 20s linear infinite;
+}
+
+.card{
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  left: 50%;
+  top: 50%;
+  margin: -60px; /* half of width/height */
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  background: #fff;
+}
+
+/* Position cards in a circle */
+.card:nth-child(1){ transform: rotateY(0deg) translateZ(200px); }
+.card:nth-child(2){ transform: rotateY(60deg) translateZ(200px); }
+.card:nth-child(3){ transform: rotateY(120deg) translateZ(200px); }
+.card:nth-child(4){ transform: rotateY(180deg) translateZ(200px); }
+.card:nth-child(5){ transform: rotateY(240deg) translateZ(200px); }
+.card:nth-child(6){ transform: rotateY(300deg) translateZ(200px); }
+
+.card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* Carousel spin animation */
+@keyframes spin {
+  from{ transform: rotateY(0deg); }
+  to{ transform: rotateY(360deg); }
+}
+
+/* Responsive */
+@media(max-width:767px){
+  .carousel{
+    width:260px;
+    height:260px;
+  }
+  .card{
+    width:100px;
+    height:100px;
+    margin:-40px;
+  }
+}
+/* Float animation for site name */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+.nav-name {
+  display: inline-block;
+  animation: float 2s ease-in-out infinite;
+}
+
+/* Hamburger animation */
+.menu-btn span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px;
+  background-color: #4F46E5;
+  transition: all 0.3s ease;
+}
+
+.menu-btn.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-btn.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-btn.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+</style>
+</head>
+<body>
+   <!-- ===== HEADER / NAVBAR ===== -->
+<header class="bg-white shadow-md fixed w-full z-50">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+    <!-- Site Name with float animation -->
+    <a href="#" class="text-2xl font-bold text-indigo-600 nav-name">HetShop</a>
+
+    <!-- Desktop Menu -->
+    <ul class="hidden md:flex space-x-6 font-semibold text-gray-700">
+      <li><a href="#home" class="hover:text-indigo-600 transition">Home</a></li>
+      <li><a href="#products" class="hover:text-indigo-600 transition">Products</a></li>
+      <li><a href="#about" class="hover:text-indigo-600 transition">About</a></li>
+      <li><a href="#contact" class="hover:text-indigo-600 transition">Contact</a></li>
+    </ul>
+
+    <!-- Mobile Hamburger -->
+    <div class="md:hidden">
+      <button id="menu-btn" class="menu-btn focus:outline-none">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white">
+    <ul class="flex flex-col px-4 py-4 space-y-3 font-semibold text-gray-700">
+      <li><a href="#home" class="hover:text-indigo-600 transition">Home</a></li>
+      <li><a href="#products" class="hover:text-indigo-600 transition">Products</a></li>
+      <li><a href="#about" class="hover:text-indigo-600 transition">About</a></li>
+      <li><a href="#contact" class="hover:text-indigo-600 transition">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+
+
+<!-- ===== JS FOR MOBILE MENU ===== -->
+<script>
+const menuBtn = document.getElementById('menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+
+menuBtn.addEventListener('click', () => {
+  menuBtn.classList.toggle('active');
+  mobileMenu.classList.toggle('hidden');
+});
+</script>
+
+    <section class="bg-[#e0d4f7]">
+        
+        <div class="carousel">
+          <div class="card"><img src="https://m.media-amazon.com/images/I/8100f8Xc9QL._SX679_.jpg"></div>
+          <div class="card"><img src="https://m.media-amazon.com/images/I/81g9M63Q8+L._SX522_.jpg"></div>
+          <div class="card"><img src="https://m.media-amazon.com/images/I/61xSyFixRCL._SX679_.jpg"></div>
+          <div class="card"><img src="https://m.media-amazon.com/images/I/715u6l7tnGL._SX522_.jpg"></div>
+          <div class="card"><img src="https://m.media-amazon.com/images/I/81A-mIZTngL._SX569_.jpg"></div>
+          <div class="card"><img src="https://m.media-amazon.com/images/I/71CZxbeP2BL._SX522_.jpg"></div>
+        </div>
+
+    </section>
+
+
+<section id="products" class="max-w-7xl mx-auto px-4 py-5">
+
+  <!-- Grid: Mobile = 3, Tablet = 3, Desktop = 4 -->
+  <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3">
+
+    <!-- Product Example -->
+    <div class="product-card opacity-0 translate-y-10 bg-white rounded-xl shadow p-2 border hover:scale-105 transition transform">
+      <a href="https://amzn.to/4pZgZm4"><img
+          src="https://m.media-amazon.com/images/I/81FV6IbwNOL._SX679_.jpg"
+          class="w-full h-28 sm:h-36 md:h-48 object-contain object-center rounded-lg" /></a>
+      <div class="flex items-center gap-1 mt-1">
+        <div class="flex text-yellow-400 text-xs sm:text-sm">★★★★☆</div>
+        <span class="text-gray-500 text-[10px] sm:text-xs">(3.7)</span>
+      </div>
+      <h3 class="text-xs sm:text-sm font-semibold mt-2 leading-tight">
+        Matrix Blue, Black & Silver Dial, Day & Date..
+      </h3>
+      <p class="text-gray-500 text-xs line-through">₹2,499</p>
+      <p class="text-black font-bold text-sm">₹289</p>
+    </div>
+
+    <!-- Duplicate for remaining products -->
+    <div class="product-card opacity-0 translate-y-10 bg-white rounded-xl shadow p-2 border hover:scale-105 transition transform">
+      <a href="https://amzn.to/3MYk9rj"><img
+          src="https://m.media-amazon.com/images/I/51oldet9suL.jpg"
+          class="w-full h-28 sm:h-36 md:h-48 object-contain object-center rounded-lg" /></a>
+      <div class="flex items-center gap-1 mt-1">
+        <div class="flex text-yellow-400 text-xs sm:text-sm">★★★☆☆</div>
+        <span class="text-gray-500 text-[10px] sm:text-xs">(3.5)</span>
+      </div>
+      <h3 class="text-xs sm:text-sm font-semibold mt-2 leading-tight">
+        SWISSTYLE Black Chain Chrono Look Analog...
+      </h3>
+      <p class="text-gray-500 text-xs line-through">₹1,999</p>
+      <p class="text-black font-bold text-sm">₹367</p>
+    </div>
+    <!-- product 3 -->
+    <div class="product-card opacity-0 translate-y-10 bg-white rounded-xl shadow p-2 border hover:scale-105 transition transform">
+      <a href="https://amzn.to/4p7amg0"><img
+          src="https://m.media-amazon.com/images/I/81A-mIZTngL._SX569_.jpg"
+          class="w-full h-28 sm:h-36 md:h-48 object-contain object-center rounded-lg" /></a>
+      <div class="flex items-center gap-1 mt-1">
+        <div class="flex text-yellow-400 text-xs sm:text-sm">★★★☆☆</div>
+        <span class="text-gray-500 text-[10px] sm:text-xs">(3.8)</span>
+      </div>
+      <h3 class="text-xs sm:text-sm font-semibold mt-2 leading-tight">
+         SOLLEN Men's Skeleton Watch, Analog Quartz...
+      </h3>
+      <p class="text-gray-500 text-xs line-through">₹5,738</p>
+      <p class="text-black font-bold text-sm">₹3,599</p>
+    </div>
+
+    <!-- product 4 -->
+    <div class="product-card opacity-0 translate-y-10 bg-white rounded-xl shadow p-2 border hover:scale-105 transition transform">
+      <a href="https://amzn.to/3YIdjsC"><img
+          src="https://m.media-amazon.com/images/I/61J7C3heCzL._SY741_.jpg"
+          class="w-full h-28 sm:h-36 md:h-48 object-contain object-center rounded-lg" /></a>
+      <div class="flex items-center gap-1 mt-1">
+        <div class="flex text-yellow-400 text-xs sm:text-sm">★★★☆☆</div>
+        <span class="text-gray-500 text-[10px] sm:text-xs">(3.8)</span>
+      </div>
+      <h3 class="text-xs sm:text-sm font-semibold mt-2 leading-tight">
+         Multicolour Dial Analogue Men's Wrist Watch...
+      </h3>
+      <p class="text-gray-500 text-xs line-through">₹3,599</p>
+      <p class="text-black font-bold text-sm">₹1,285</p>
+    </div>
+    <!-- product 5 -->
+    <div class="product-card opacity-0 translate-y-10 bg-white rounded-xl shadow p-2 border hover:scale-105 transition transform">
+      <a href="https://amzn.to/3Ybjntz"><img
+          src="https://m.media-amazon.com/images/I/51xTFS8iRfL.jpg"
+          class="w-full h-28 sm:h-36 md:h-48 object-contain object-center rounded-lg" /></a>
+      <div class="flex items-center gap-1 mt-1">
+        <div class="flex text-yellow-400 text-xs sm:text-sm">★★★☆☆</div>
+        <span class="text-gray-500 text-[10px] sm:text-xs">(3.7)</span>
+      </div>
+      <h3 class="text-xs sm:text-sm font-semibold mt-2 leading-tight">
+         Acnos Stainless Steel primum Watches Combo
+      </h3>
+      <p class="text-gray-500 text-xs line-through">₹2,999</p>
+      <p class="text-black font-bold text-sm">₹428</p>
+    </div>
+    <!-- product 6 -->
+    <div class="product-card opacity-0 translate-y-10 bg-white rounded-xl shadow p-2 border hover:scale-105 transition transform">
+      <a href="https://amzn.to/49lExLP"><img
+          src="https://m.media-amazon.com/images/I/71gWkXN5RAL._SX569_.jpg"
+          class="w-full h-28 sm:h-36 md:h-48 object-contain object-center rounded-lg" /></a>
+      <div class="flex items-center gap-1 mt-1">
+        <div class="flex text-yellow-400 text-xs sm:text-sm">★★★☆☆</div>
+        <span class="text-gray-500 text-[10px] sm:text-xs">(3.4)</span>
+      </div>
+      <h3 class="text-xs sm:text-sm font-semibold mt-2 leading-tight">
+     SWISSTYLE Two Tone Chrono Look Analog...
+      </h3>
+      <p class="text-gray-500 text-xs line-through">₹1,999</p>
+      <p class="text-black font-bold text-sm">₹369 </p>
+    </div>
+    <!-- product 7 -->
+    <div class="product-card opacity-0 translate-y-10 bg-white rounded-xl shadow p-2 border hover:scale-105 transition transform">
+      <a href="https://amzn.to/3Y9smvo"><img
+          src="https://m.media-amazon.com/images/I/71KsVDb36xL._SX679_.jpg"
+          class="w-full h-28 sm:h-36 md:h-48 object-contain object-center rounded-lg" /></a>
+      <div class="flex items-center gap-1 mt-1">
+        <div class="flex text-yellow-400 text-xs sm:text-sm"> ★★★★☆</div>
+        <span class="text-gray-500 text-[10px] sm:text-xs">(4.2)</span>
+      </div>
+      <h3 class="text-xs sm:text-sm font-semibold mt-2 leading-tight">
+         Timex Men Analog Blue-TWHG03SMU10
+      </h3>
+      <p class="text-gray-500 text-xs line-through">₹4,995</p>
+      <p class="text-black font-bold text-sm">₹2,497</p>
+    </div>
+    <!-- product 8 -->
+    <div class="product-card opacity-0 translate-y-10 bg-white rounded-xl shadow p-2 border hover:scale-105 transition transform">
+      <a href="https://amzn.to/4ssBh9d"><img
+          src="https://m.media-amazon.com/images/I/712lphPVwfL._SX679_.jpg"
+          class="w-full h-28 sm:h-36 md:h-48 object-contain object-center rounded-lg" /></a>
+      <div class="flex items-center gap-1 mt-1">
+        <div class="flex text-yellow-400 text-xs sm:text-sm">★★★☆☆</div>
+        <span class="text-gray-500 text-[10px] sm:text-xs">(3.5)</span>
+      </div>
+      <h3 class="text-xs sm:text-sm font-semibold mt-2 leading-tight">
+     OLEVS Men's Business Watch Gold Blue with..
+      </h3>
+      <p class="text-gray-500 text-xs line-through">₹3,900</p>
+      <p class="text-black font-bold text-sm">₹3,420 </p>
+    </div>
+   
+
+  </div>
+</section>    
+
+
+<!-- ===== WATCH ANIMATION SECTION ===== -->
+<section class="bg-[#e0d4f7] py-20 relative overflow-hidden">
+  <div class="container mx-auto flex flex-col md:flex-row items-center justify-center gap-10">
+
+    <!-- Watch Image with rotation animation -->
+    <div class="w-64 h-64 md:w-80 md:h-80 relative">
+      <div class="watch-spin w-full h-full rounded-full overflow-hidden shadow-2xl bg-white flex items-center justify-center">
+        <img src="https://static.helioswatchstore.com/media/catalog/product/9/0/90177tm03_1_3.jpg" alt="Premium Watch" class="w-40 h-40 md:w-52 md:h-52 object-contain">
+      </div>
+    </div>
+
+    <!-- Text Content -->
+    <div class="text-center md:text-left max-w-md">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4 animate-fadeInUp">The Ultimate Premium Watch</h2>
+      <p class="text-lg mb-6 animate-fadeInUp delay-200">
+        Experience elegance and precision. This watch combines timeless design with modern technology to keep you ahead in style and time.
+      </p>
+      <a href="#buy" class="inline-block px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg shadow-lg hover:bg-purple-700 transition-all animate-fadeInUp delay-400">
+        Buy Now
+      </a>
+    </div>
+
+  </div>
+</section>
+
+ 
+<script>
+// ===== SCROLL REVEAL =====
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.remove('opacity-0', 'translate-y-10');
+      entry.target.classList.add('transition', 'duration-700', 'ease-out', 'opacity-100', 'translate-y-0');
+      observer.unobserve(entry.target);
+    }
+  });
+},{ threshold: 0.2 });
+
+document.querySelectorAll('.product-card').forEach(card => {
+  observer.observe(card);
+});
+</script>
+
+<style>
+/* Initial state */
+.product-card {
+  transition: all 0.7s ease-out;
+}
+</style>
+
+
+<style>
+/* ===== WATCH ROTATION ===== */
+@keyframes rotateWatch {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.watch-spin {
+  animation: rotateWatch 15s linear infinite;
+}
+
+/* ===== TEXT ANIMATION ===== */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 1s forwards;
+}
+
+.animate-fadeInUp.delay-200 { animation-delay: 0.2s; }
+.animate-fadeInUp.delay-400 { animation-delay: 0.4s; }
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:767px){
+  .watch-spin img {
+    width: 10rem;
+    height: 10rem;
+  }
+}
+/* ===== FADE-IN ANIMATION ===== */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(20px);}
+  100% { opacity: 1; transform: translateY(0);}
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.8s forwards;
+}
+
+/* Stagger delays */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+.delay-700 { animation-delay: 0.7s; }
+.delay-800 { animation-delay: 0.8s; }
+.delay-900 { animation-delay: 0.9s; }
+.delay-1000 { animation-delay: 1s; }
+
+
+</style>
+
+</body>
+</html>
