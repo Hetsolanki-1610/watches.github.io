@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Video Shorts Grid</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-black min-h-screen text-white p-4">
+
+  <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+    <!-- CARD 1 -->
+    <div class="group bg-black rounded-xl overflow-hidden">
+      <video class="w-full h-56 object-cover group-hover:scale-105 transition duration-300" muted playsinline loop autoplay>
+        <source src="video/Cinematic_Watch_Product_Video_Commercial_Example___Rolex_Timex_Omega_Samsung_Apple_Jewelry_Amazon_Ad(480p)(1).mp4" type="video/mp4">
+      </video>
+      <div class="p-3">
+        <h3 class="font-semibold text-sm">Street Style Fit</h3>
+        <p class="text-xs text-gray-400">1.2K views</p>
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="group bg-black rounded-xl overflow-hidden">
+      <video class="w-full h-56 object-cover group-hover:scale-105 transition duration-300" muted playsinline loop autoplay>
+        <source src="video/Luxury_Watch_Ad(360p).mp4" type="video/mp4">
+      </video>
+      <div class="p-3">
+        <h3 class="font-semibold text-sm">Behind the Scenes</h3>
+        <p class="text-xs text-gray-400">980 views</p>
+      </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="group bg-black rounded-xl overflow-hidden">
+      <video class="w-full h-56 object-cover group-hover:scale-105 transition duration-300"muted playsinline loop autoplay>
+        <source src="video/Rolex_Submariner_2022_Black___Blender_3d_Product_Animation(480p).mp4" type="video/mp4">
+      </video>
+      <div class="p-3">
+        <h3 class="font-semibold text-sm">Sneaker Shots</h3>
+        <p class="text-xs text-gray-400">650 views</p>
+      </div>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="group bg-black rounded-xl overflow-hidden">
+      <video class="w-full h-56 object-cover group-hover:scale-105 transition duration-300" muted playsinline loop autoplay>
+        <source src="video/Wrist_Watch_Commercial___Cinematic_3D_Animation(480p).mp4" type="video/mp4">
+      </video>
+      <div class="p-3">
+        <h3 class="font-semibold text-sm">Outdoor Motion</h3>
+        <p class="text-xs text-gray-400">1.1K views</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- JS FOR HOVER PLAY -->
+  <script>
+    //   document.querySelectorAll("video").forEach(video => {
+    //   video.addEventListener("mouseenter", () => video.play());
+    //   video.addEventListener("mouseleave", () => video.pause());
+    // });
+  </script>
+
+</body>
+</html>
